@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiPlus Digital Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0b0f14;color:#fff;overflow-x:hidden}
+
+/* NAVBAR */
+header{
+  position:fixed;width:100%;top:0;left:0;
+  padding:20px 8%;display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;background:transparent;
+}
+.logo{font-size:28px;font-weight:800;color:#ffb400}
+nav{display:flex;gap:40px}
+nav a{color:#fff;text-decoration:none;font-weight:500;transition:.3s}
+nav a:hover{color:#ffb400}
+.menu-toggle{display:none;font-size:30px;cursor:pointer}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:0 8%;position:relative;
+  background: radial-gradient(circle at 80% 30%, rgba(255,180,0,0.25), transparent 40%), #0b0f14;
+}
+.hero::before{
+  content:"";position:absolute;width:100%;height:100%;
+  background:url('https://www.transparenttextures.com/patterns/wavecut.png');
+  opacity:0.06;top:0;left:0;
+}
+.hero-text{flex:1;animation:slideUp 1s ease forwards}
+.tag{color:#ffb400;letter-spacing:3px;margin-bottom:15px}
+.hero-text h1{font-size:70px;line-height:1.1;font-weight:800}
+.hero-text p{margin-top:20px;color:#bbb;max-width:500px}
+.hero-img{flex:1;text-align:right;animation:fadeIn 2s ease}
+.hero-img img{max-width:450px;width:100%}
+.arrow{position:absolute;right:45%;top:35%;font-size:40px;color:#fff;animation:float 3s infinite ease-in-out;opacity:.4}
+
+@keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+/* SERVICES */
+.services{padding:100px 8%;background:#f8f9fb;color:#111;text-align:center}
+.services-head span{color:#ffb400;font-weight:600;letter-spacing:2px}
+.services-head h2{font-size:42px;margin:15px 0 60px;font-weight:800}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+
+/* CARD */
+.service-card{
+  position:relative;background:#fff;border-radius:18px;overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  transition:all .5s ease;transform:translateY(40px);opacity:0;cursor:pointer;
+}
+.img-wrap{position:relative;overflow:hidden}
+.img-wrap img{width:100%;height:220px;object-fit:cover;transition:transform .6s ease}
+.overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(45deg, rgba(255,180,0,.6), rgba(0,0,0,.6));
+  opacity:0;transition:.5s;
+}
+.hover-icon{
+  position:absolute;bottom:15px;right:15px;background:#fff;color:#111;
+  width:45px;height:45px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;transform:scale(0);transition:.4s ease;
+}
+.card-content{padding:25px;transition:.4s}
+.card-content h3{margin-bottom:10px;transition:.4s}
+.card-content p{color:#555;transition:.4s}
+
+/* shine */
+.service-card::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform:skewX(-25deg);
+}
+
+/* hover */
+.service-card:hover{transform:translateY(-15px);box-shadow:0 25px 60px rgba(0,0,0,0.2)}
+.service-card:hover img{transform:scale(1.15)}
+.service-card:hover .overlay{opacity:1}
+.service-card:hover .hover-icon{transform:scale(1)}
+.service-card:hover .card-content h3{color:#ffb400;transform:translateX(5px)}
+.service-card:hover .card-content p{transform:translateX(5px)}
+.service-card:hover::before{animation:shine 1s forwards}
+@keyframes shine{100%{left:120%}}
+
+.service-card.active{transform:translateY(0);opacity:1;transition:all 0.8s ease}
+
+/* MOBILE */
+@media(max-width:1000px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  nav{position:absolute;top:80px;right:-100%;background:#111;flex-direction:column;width:200px;padding:20px;transition:.4s}
+  nav.active{right:20px}
+  .menu-toggle{display:block}
+  .hero{flex-direction:column;text-align:center;padding-top:120px}
+  .hero-img{margin-top:40px;text-align:center}
+  .hero-text h1{font-size:40px}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+  .services-head h2{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DigiPlus</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="navMenu">
+    <a href="#">Home</a>
+    <a href="#">Pages</a>
+    <a href="#">Services</a>
+    <a href="#">Projects</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="tag">BRAND DIGITAL AGENCY</div>
+    <h1>Make Your<br>Brand Future-Proof.</h1>
+    <p>We design powerful digital experiences that help brands grow, engage, and convert.</p>
+  </div>
+  <div class="hero-img">
+    <img src="https://i.imgur.com/6VBx3io.png" alt="">
+  </div>
+  <div class="arrow">➤</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-head">
+    <span>SERVICES</span>
+    <h2>Empower Your Business With <br> Innovative Digital Services</h2>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- CARD 1 -->
+    <div class="service-card reveal">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80">
+        <div class="overlay"></div>
+        <div class="hover-icon">➜</div>
+      </div>
+      <div class="card-content">
+        <h3>Website Design (UI/UX)</h3>
+        <p>Modern, user-friendly website designs focused on conversion.</p>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="service-card reveal">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80">
+        <div class="overlay"></div>
+        <div class="hover-icon">➜</div>
+      </div>
+      <div class="card-content">
+        <h3>Corporate / Portfolio</h3>
+        <p>Professional websites to showcase your brand beautifully.</p>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="service-card reveal">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80">
+        <div class="overlay"></div>
+        <div class="hover-icon">➜</div>
+      </div>
+      <div class="card-content">
+        <h3>Maintenance & Support</h3>
+        <p>Reliable maintenance and technical support services.</p>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="service-card reveal">
+      <div class="img-wrap">
+        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80">
+        <div class="overlay"></div>
+        <div class="hover-icon">➜</div>
+      </div>
+      <div class="card-content">
+        <h3>Branding & Creative Design</h3>
+        <p>Creative branding solutions to build strong identity.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-container">
+
+    <!-- LEFT IMAGES -->
+    <div class="about-images reveal">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" class="img1">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" class="img2">
+      <div class="badge">Creative Agency</div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="about-content reveal">
+      <span>ABOUT OUR COMPANY</span>
+      <h2>We Deliver Innovative Ideas To Elevate Your Digital Agency.</h2>
+      <p>
+        We craft modern digital experiences for brands through creativity and technology.
+        Our team focuses on delivering results that grow your business and engage customers.
+      </p>
+
+      <div class="exp-box">
+        <div class="icon">⚙️</div>
+        <div>
+          <h4>50+ Years of Experience</h4>
+          <p>Professional services with proven industry expertise.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<section class="process">
+  <div class="process-head">
+    <span>WORKING PROCESS</span>
+    <h2>Our Work Process In 3 Easy Steps</h2>
+  </div>
+
+  <div class="process-steps">
+
+    <!-- STEP 1 -->
+    <div class="step reveal">
+      <div class="circle">
+        <div class="num">01</div>
+        ⚙️
+      </div>
+      <h3>Choose Service</h3>
+      <p>Select the best digital service that fits your business needs.</p>
+    </div>
+
+    <!-- ARROW -->
+    <div class="arrow-line">➜</div>
+
+    <!-- STEP 2 -->
+    <div class="step reveal">
+      <div class="circle">
+        <div class="num">02</div>
+        📢
+      </div>
+      <h3>Start Optimizing</h3>
+      <p>We start optimizing and building your powerful digital presence.</p>
+    </div>
+
+    <!-- ARROW -->
+    <div class="arrow-line">➜</div>
+
+    <!-- STEP 3 -->
+    <div class="step reveal">
+      <div class="circle">
+        <div class="num">03</div>
+        🚀
+      </div>
+      <h3>Launch Now</h3>
+      <p>Your project goes live with complete performance and support.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-container">
+
+    <!-- LEFT CONTENT -->
+    <div class="why-left reveal">
+      <span>WHY CHOOSE US</span>
+      <h2>Why You Should Choose This Company?</h2>
+      <p>
+        We deliver transparent, reliable, and creative digital solutions that help
+        businesses grow and stand out in the modern world.
+      </p>
+
+      <div class="why-point">
+        <div class="icon">💰</div>
+        <div>
+          <h4>Less Pay, Get More Benefits</h4>
+          <p>High quality services at affordable pricing for every business.</p>
+        </div>
+      </div>
+
+      <button class="why-btn">Get In Touch ➜</button>
+    </div>
+
+    <!-- RIGHT CIRCLES -->
+    <div class="why-right reveal">
+      <div class="circle big">Reliable<br>& Transparent</div>
+
+      <div class="circle mid">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80">
+      </div>
+
+      <div class="circle small">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80">
+      </div>
+
+      <div class="circle text">Sharpen Your Brand</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands">
+  <h3>1K+ Brands Trust Us</h3>
+  <div class="brand-logos">
+    <img src="https://dummyimage.com/140x60/ccc/000&text=Logo+1">
+    <img src="https://dummyimage.com/140x60/ccc/000&text=Logo+2">
+    <img src="https://dummyimage.com/140x60/ccc/000&text=Logo+3">
+    <img src="https://dummyimage.com/140x60/ccc/000&text=Logo+4">
+    <img src="https://dummyimage.com/140x60/ccc/000&text=Logo+5">
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="test-container">
+
+    <!-- LEFT -->
+    <div class="test-left reveal">
+      <span>TESTIMONIAL</span>
+      <h2>What They’re Talking About Us?</h2>
+    </div>
+
+    <!-- RIGHT SLIDER -->
+    <div class="test-right reveal">
+      <div class="test-slider" id="testSlider">
+
+        <div class="test-card">
+          <p>“Amazing service and professional team. They built our website beautifully and helped grow our brand.”</p>
+          <h4>Sarah Johnson</h4>
+          <span>Marketing Manager</span>
+        </div>
+
+        <div class="test-card">
+          <p>“Creative, reliable and transparent. Highly recommended for digital solutions.”</p>
+          <h4>David Miller</h4>
+          <span>Startup Founder</span>
+        </div>
+
+        <div class="test-card">
+          <p>“Their UI/UX and support team is outstanding. Best agency experience so far.”</p>
+          <h4>Priya Sharma</h4>
+          <span>Business Owner</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="contact">
+  <div class="contact-container">
+
+    <!-- LEFT INFO -->
+    <div class="contact-left reveal">
+      <span>WHY CHOOSE US</span>
+      <h2>Recognized As One Of The Leading Company!</h2>
+
+      <div class="contact-info">
+        <div class="info-box">
+          <div class="icon">📞</div>
+          <div>
+            <p>company@gmail.com</p>
+            <p>+00 (200) - 2222</p>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="icon">📍</div>
+          <div>
+            <p>90 Washington, ng</p>
+            <p>Manchester, Kentucky USA</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="contact-right reveal">
+      <form class="contact-form">
+        <h3>Contact Us</h3>
+        <h2>Get in Touch</h2>
+
+        <div class="form-grid">
+          <input type="text" placeholder="Your Name">
+          <input type="email" placeholder="Email Address">
+          <input type="text" placeholder="Enter Subject">
+          <input type="text" placeholder="Enter Phone">
+        </div>
+
+        <textarea placeholder="Write a Message"></textarea>
+     <a href="#">  <button type="submit">Send Message ➜</button></a>
+      </form>
+    </div>
+
+  </div>
+</section>
+<section class="blog">
+  <div class="blog-head">
+    <span>FROM THE BLOG</span>
+    <h2>News & Articles</h2>
+  </div>
+
+  <div class="blog-grid">
+
+    <!-- BLOG 1 -->
+    <div class="blog-card reveal">
+      <div class="blog-img">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80">
+        <div class="date">03<br>JUN</div>
+      </div>
+      <div class="blog-content">
+        <div class="meta">By Rimon • AI Content</div>
+        <h3>Web Development Essentials</h3>
+      </div>
+    </div>
+
+    <!-- BLOG 2 -->
+    <div class="blog-card reveal">
+      <div class="blog-img">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80">
+        <div class="date">02<br>JUN</div>
+      </div>
+      <div class="blog-content">
+        <div class="meta">By Rimon • AI Technology</div>
+        <h3>How AI is Revolutionizing Web</h3>
+      </div>
+    </div>
+
+    <!-- BLOG 3 -->
+    <div class="blog-card reveal">
+      <div class="blog-img">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=80">
+        <div class="date">01<br>JUN</div>
+      </div>
+      <div class="blog-content">
+        <div class="meta">By Kamrul • UI Design</div>
+        <h3>Effective Hashtag Strategies</h3>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+
+
+    /* BLOG */
+.blog{
+  padding:100px 8%;
+  background:#fff;
+  color:#111;
+}
+
+.blog-head{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.blog-head span{
+  color:#ffb400;
+  letter-spacing:2px;
+  font-weight:600;
+}
+
+.blog-head h2{
+  font-size:42px;
+  margin-top:10px;
+  font-weight:800;
+}
+
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.blog-card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  transition:.4s;
+  cursor:pointer;
+}
+
+.blog-img{
+  position:relative;
+  overflow:hidden;
+}
+
+.blog-img img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  transition:.6s;
+}
+
+.date{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:#ffb400;
+  color:#111;
+  font-weight:700;
+  padding:10px 14px;
+  text-align:center;
+  border-radius:8px;
+}
+
+.blog-content{
+  padding:25px;
+}
+
+.meta{
+  font-size:14px;
+  color:#777;
+  margin-bottom:10px;
+}
+
+.blog-card:hover{
+  transform:translateY(-10px);
+}
+
+.blog-card:hover img{
+  transform:scale(1.1);
+}
+
+/* responsive */
+@media(max-width:1000px){
+  .blog-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .blog-grid{grid-template-columns:1fr}
+}
+
+
+/* ABOUT SECTION */
+.about{
+  padding:100px 8%;
+  background:#fff;
+  color:#111;
+}
+
+.about-container{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+.about-images{
+  position:relative;
+  flex:1;
+}
+
+.about-images img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+
+.img1{
+  width:85%;
+}
+
+.img2{
+  position:absolute;
+  bottom:-40px;
+  right:0;
+  width:70%;
+  border:8px solid #fff;
+}
+
+.badge{
+  position:absolute;
+  top:40%;
+  left:40%;
+  transform:translate(-50%,-50%);
+  background:#ffb400;
+  color:#111;
+  font-weight:700;
+  padding:30px 25px;
+  border-radius:50%;
+  text-align:center;
+  width:140px;
+  height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* CONTENT */
+.about-content{
+  flex:1;
+}
+
+.about-content span{
+  color:#ffb400;
+  font-weight:600;
+  letter-spacing:2px;
+}
+
+.about-content h2{
+  font-size:40px;
+  margin:15px 0;
+  font-weight:800;
+}
+
+.about-content p{
+  color:#555;
+  line-height:1.7;
+}
+
+.exp-box{
+  margin-top:30px;
+  display:flex;
+  gap:20px;
+  background:#f8f9fb;
+  padding:25px;
+  border-radius:15px;
+  align-items:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:.4s;
+}
+
+.exp-box:hover{
+  transform:translateY(-8px);
+}
+
+.icon{
+  font-size:35px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-container{
+    flex-direction:column;
+  }
+
+  .img2{
+    position:relative;
+    width:100%;
+    margin-top:20px;
+  }
+
+  .badge{
+    left:50%;
+    top:50%;
+  }
+}
+</style>
+<style>
+/* PROCESS SECTION */
+.process{
+  padding:100px 8%;
+  background:linear-gradient(135deg,#0b0f14,#0f1b2e);
+  color:#fff;
+  text-align:center;
+}
+
+.process-head span{
+  color:#ffb400;
+  letter-spacing:2px;
+  font-weight:600;
+}
+
+.process-head h2{
+  font-size:40px;
+  margin:15px 0 70px;
+  font-weight:800;
+}
+
+.process-steps{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.step{
+  flex:1;
+  transition:.4s;
+}
+
+.circle{
+  width:120px;
+  height:120px;
+  margin:0 auto 20px;
+  border-radius:50%;
+  background:#ffb400;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  position:relative;
+  transition:.4s;
+}
+
+.num{
+  position:absolute;
+  top:-10px;
+  left:-10px;
+  background:#111;
+  color:#fff;
+  font-size:14px;
+  padding:6px 10px;
+  border-radius:20px;
+}
+
+.step h3{
+  margin-bottom:10px;
+}
+
+.step p{
+  color:#ccc;
+  font-size:14px;
+}
+
+/* arrow */
+.arrow-line{
+  font-size:40px;
+  color:#ffb400;
+  animation:float 2s infinite ease-in-out;
+}
+
+/* hover */
+.step:hover .circle{
+  transform:scale(1.1) rotate(8deg);
+  box-shadow:0 15px 40px rgba(255,180,0,0.4);
+}
+
+.step:hover h3{
+  color:#ffb400;
+}
+
+/* responsive */
+@media(max-width:900px){
+  .process-steps{
+    flex-direction:column;
+  }
+  .arrow-line{
+    transform:rotate(90deg);
+  }
+}
+
+</style>
+
+<style>
+
+/* WHY CHOOSE US */
+.why{
+  padding:100px 8%;
+  background:linear-gradient(135deg,#0f1b2e,#0b0f14);
+  color:#fff;
+}
+
+.why-container{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+.why-left{flex:1}
+.why-left span{color:#ffb400;letter-spacing:2px;font-weight:600}
+.why-left h2{font-size:42px;margin:15px 0;font-weight:800}
+.why-left p{color:#bbb;line-height:1.7;margin-bottom:25px}
+
+.why-point{
+  display:flex;
+  gap:15px;
+  margin-bottom:30px;
+  align-items:center;
+}
+.why-point .icon{
+  font-size:28px;
+  background:#ffb400;
+  color:#111;
+  padding:12px;
+  border-radius:50%;
+}
+
+.why-btn{
+  padding:14px 28px;
+  border:none;
+  background:#ffb400;
+  color:#111;
+  font-weight:700;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.4s;
+}
+.why-btn:hover{
+  transform:translateX(6px);
+}
+
+/* RIGHT CIRCLES */
+.why-right{
+  flex:1;
+  position:relative;
+  height:450px;
+}
+
+.circle{
+  position:absolute;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:700;
+  overflow:hidden;
+  transition:.5s;
+}
+
+.circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.big{
+  width:220px;height:220px;
+  background:#ffb400;color:#111;
+  top:0;right:80px;
+}
+
+.mid{
+  width:200px;height:200px;
+  top:140px;right:0;
+}
+
+.small{
+  width:160px;height:160px;
+  bottom:0;right:120px;
+}
+
+.text{
+  width:220px;height:220px;
+  background:#ffb400;color:#111;
+  bottom:80px;left:0;
+}
+
+/* hover floating */
+.circle:hover{
+  transform:translateY(-10px) scale(1.05);
+}
+
+/* responsive */
+@media(max-width:900px){
+  .why-container{flex-direction:column}
+  .why-right{height:520px}
+}
+</style>
+<style>
+/* BRANDS */
+.brands{
+  padding:60px 8%;
+  background:#fff;
+  text-align:center;
+}
+.brands h3{
+  margin-bottom:30px;
+  color:#111;
+}
+.brand-logos{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+  flex-wrap:wrap;
+  opacity:.7;
+}
+.brand-logos img{
+  filter:grayscale(100%);
+  transition:.4s;
+}
+.brand-logos img:hover{
+  filter:grayscale(0%);
+  transform:scale(1.1);
+}
+
+/* TESTIMONIAL */
+.testimonial{
+  padding:100px 8%;
+  background:#f8f9fb;
+}
+
+.test-container{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+.test-left{flex:1}
+.test-left span{color:#ffb400;font-weight:600;letter-spacing:2px}
+.test-left h2{font-size:42px;margin-top:10px;font-weight:800;color:#111}
+
+.test-right{
+  flex:1;
+  overflow:hidden;
+  position:relative;
+}
+
+.test-slider{
+  display:flex;
+  transition:transform .6s ease;
+}
+
+.test-card{
+  min-width:100%;
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.test-card p{
+  font-style:italic;
+  margin-bottom:20px;
+  color:#555;
+}
+.test-card h4{color:#111}
+.test-card span{font-size:14px;color:#888}
+
+/* responsive */
+@media(max-width:900px){
+  .test-container{flex-direction:column}
+}
+</style>
+<style>
+/* CONTACT */
+.contact{
+  padding:100px 8%;
+  background:linear-gradient(135deg,#0f1b2e,#0b0f14);
+  color:#fff;
+}
+
+.contact-container{
+  display:flex;
+  gap:60px;
+  align-items:center;
+}
+
+/* LEFT */
+.contact-left{flex:1}
+.contact-left span{color:#ffb400;letter-spacing:2px;font-weight:600}
+.contact-left h2{font-size:42px;margin:15px 0 40px;font-weight:800}
+
+.contact-info{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+
+.info-box{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+.info-box .icon{
+  background:#ffb400;
+  color:#111;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
+}
+
+/* RIGHT FORM */
+.contact-right{
+  flex:1;
+}
+
+.contact-form{
+  background:#fff;
+  padding:40px;
+  border-radius:20px;
+  color:#111;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+
+.contact-form h3{
+  color:#555;
+}
+
+.contact-form h2{
+  margin-bottom:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  outline:none;
+  transition:.3s;
+  font-family:'Poppins',sans-serif;
+}
+
+.contact-form textarea{
+  margin-top:15px;
+  height:120px;
+  resize:none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#ffb400;
+  box-shadow:0 0 0 3px rgba(255,180,0,0.2);
+}
+
+.contact-form button{
+  margin-top:20px;
+  padding:14px 25px;
+  border:none;
+  background:#ffb400;
+  color:#111;
+  font-weight:700;
+  border-radius:30px;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.contact-form button:hover{
+  transform:translateX(6px);
+}
+
+/* responsive */
+@media(max-width:900px){
+  .contact-container{flex-direction:column}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+<script>
+function toggleMenu(){
+  document.getElementById('navMenu').classList.toggle('active');
+}
+
+window.addEventListener('scroll', ()=>{
+  document.querySelectorAll('.reveal').forEach(el=>{
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+  });
+});
+</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly Footer Section</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#111;
+  color:#fff;
+}
+
+/* ===== Top CTA Banner ===== */
+.cta-banner{
+  background:#f5a623;
+  border-radius:20px;
+  margin:30px;
+  padding:30px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.cta-banner h2{
+  font-size:34px;
+  font-weight:700;
+  color:#111;
+}
+
+.cta-banner button{
+  background:#111;
+  color:#fff;
+  border:none;
+  padding:14px 28px;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.cta-banner button:hover{
+  transform:translateY(-3px);
+}
+
+/* ===== Footer ===== */
+.footer{
+  background:radial-gradient(circle at top left,#1c1c2b,#0b0b15);
+  padding:80px 60px 40px;
+  position:relative;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+}
+
+.footer h3{
+  margin-bottom:20px;
+  font-size:22px;
+}
+
+.footer p{
+  color:#bbb;
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+/* Newsletter */
+.newsletter{
+  display:flex;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  width:100%;
+  max-width:320px;
+}
+
+.newsletter input{
+  flex:1;
+  border:none;
+  padding:12px;
+  outline:none;
+}
+
+.newsletter button{
+  background:#f5a623;
+  border:none;
+  padding:0 18px;
+  cursor:pointer;
+}
+
+/* Links */
+.footer ul{
+  list-style:none;
+}
+
+.footer ul li{
+  margin-bottom:12px;
+}
+
+.footer ul li a{
+  text-decoration:none;
+  color:#bbb;
+  transition:0.3s;
+}
+
+.footer ul li a:hover{
+  color:#fff;
+  padding-left:6px;
+}
+
+/* Contact */
+.contact-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:15px;
+  color:#bbb;
+}
+
+/* Scroll Top */
+.scroll-top{
+  position:absolute;
+  right:30px;
+  bottom:30px;
+  background:#f5a623;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.scroll-top:hover{
+  transform:translateY(-5px);
+}
+
+/* Responsive */
+@media(max-width:992px){
+  .footer-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .cta-banner{
+    text-align:center;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CTA Banner -->
+<div class="cta-banner">
+  <h2>Looking For Professional Business Consultant ?</h2>
+  <button>GET STARTED FREE</button>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+
+    <!-- About -->
+    <div>
+      <h3>Stackly</h3>
+      <p>At vero eos et accusamus justo odio dignissimos ducimus blanditiis.</p>
+
+      <div class="newsletter">
+        <input type="email" placeholder="Email Address">
+        <button>➤</button>
+      </div>
+    </div>
+
+    <!-- Quick Link -->
+    <div>
+      <h3>Quick Link</h3>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing Plan</a></li>
+        <li><a href="#">Best Program</a></li>
+        <li><a href="#">Press Kit</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Team Member</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Latest News</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h3>Contact</h3>
+      <div class="contact-item">📍 55 Main Street, 2nd Block Melbourne, Australia</div>
+      <div class="contact-item">✉ Support@gmail.com</div>
+      <div class="contact-item">📞 +000 (123) 44 55</div>
+    </div>
+
+  </div>
+
+  <div class="scroll-top" onclick="scrollToTop()">↑</div>
+</footer>
+
+<script>
+function scrollToTop(){
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
+
+
+</body>
+</html>
